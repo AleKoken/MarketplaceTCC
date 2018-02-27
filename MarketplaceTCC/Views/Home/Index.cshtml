@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Marketplace</h1>
+    <p class="lead">Projeto de TCC - Alexandre Proença - 3º ADS - 2017</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Vendedores</h2>
+        <p>
+          Cadastro de vendedores:
+        </p>
+        <p><a class="btn btn-info" href="http://localhost:58443/Vendedores/Create">Cadastrar &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Clientes</h2>
+        <p>Cadastro de clientes:</p>
+        <p><a class="btn btn-info" href="http://localhost:58443/Clientes/Create">Cadastrar &raquo;</a></p>
+    </div>
+    @if (User.IsInRole("Cliente"))
+    {
+    <div class="col-md-4">
+        <h2>Produtos</h2>
+        <p>Ir para página de produtos:</p>
+        <p><a class="btn btn-warning" href="http://localhost:58443/Pedidos/CriarCarrinho">Ir p/ Produtos &raquo;</a></p>
+    </div>
+    }
+</div>

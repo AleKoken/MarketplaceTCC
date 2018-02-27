@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MarketplaceTCC.Models.Produtos>
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>Produtos Ativos</h2>
+<br>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preco)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marca.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vendedor.Nome)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Imagem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estoque)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status.Nome)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marca.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vendedor.Nome)
+            </td>
+            <td>
+                @if (!string.IsNullOrEmpty(item.Imagem))
+                {
+                    <img src="@Url.Content(item.Imagem)" alt="Image" style="width:100px;height:150px;max-width: 100%; height: auto;" />
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estoque)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Nome)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ProdutosId }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.ProdutosId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Excluir", "Delete", new { id = item.ProdutosId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+
+</table>
+

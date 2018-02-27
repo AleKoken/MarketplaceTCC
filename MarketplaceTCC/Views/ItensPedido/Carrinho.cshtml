@@ -1,0 +1,55 @@
+﻿@model IEnumerable<MarketplaceTCC.Models.ItensPedido>
+
+@{
+    ViewBag.Title = "Carrinho";
+}
+
+<h2>Carrinho</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ProdutosId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Numero)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantidade)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdutosId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.ActionLink("Alterar Quantidade", "Edit", new { id = item.ItensPedidoId }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Remover", "Delete", new { id = item.ItensPedidoId }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+    }
+</table>
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<div>
+    @Html.ActionLink("Continuar Comprando", "Index", "Produtos", new { }, new { @class = "btn btn-warning" })
+    @Html.ActionLink("Finalizar Pedido", "FInalizarPedido", "Pedidos", new { }, new { @class = "btn btn-success" })
+</div>

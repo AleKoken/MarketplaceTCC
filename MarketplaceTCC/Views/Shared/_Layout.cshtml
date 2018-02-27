@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Marketplace ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin<b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("Estados", "Index", "Estados")</li>
+                                    <li>@Html.ActionLink("Cidades", "Index", "Cidades")</li>
+                                    <li>@Html.ActionLink("Status", "Index", "Status")</li>
+                                    <li>@Html.ActionLink("Marcas", "Index", "Marcas")</li>
+                                    <li>@Html.ActionLink("Categorias", "Index", "Categorias")</li>
+                                </ul>
+                            </li>
+                        }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Ativos", "Ativos", "Produtos")</li>
+                            <li>@Html.ActionLink("Bloqueados", "Bloqueados", "Produtos")</li>
+                            <li>@Html.ActionLink("Todos", "Todos", "Produtos")</li>
+                        </ul>
+                    </li>             
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Clientes<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Listar", "Index", "Clientes")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Vendedores<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Listar", "Index", "Vendedores")</li>
+
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Vendedor"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Produtos<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Meus Produtos", "MeusProdutos", "Produtos")</li>
+                                <li>@Html.ActionLink("Cadastrar", "Create", "Produtos")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Vendedor"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Minha Conta<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Conta", "Conta", "Vendedores")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Meus Pedidos<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Listar", "MeusPedidos", "Pedidos")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (User.IsInRole("Cliente"))
+                    {
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Minha Conta<b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Conta", "Conta", "Clientes")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    </ul>
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
